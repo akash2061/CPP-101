@@ -71,30 +71,31 @@ int main()
 
     cout << endl;
 
-    int open_count = 0, closed_count = 0;
+    int open = 0, closed = 0;
     vector<int> open_ports;
     for (unsigned int port = start_port; port <= end_port; ++port)
     {
         if (is_port_open(ip, port))
         {
-            open_count++;
+            open++;
             open_ports.push_back(port);
             cout << "Port " << port << " is open." << endl;
         }
         else
         {
-            closed_count++;
+            closed++;
             cout << "Port " << port << " is closed." << endl;
         }
     }
     cout << endl;
-    cout << "Open Ports: " << open_count << " :  [ ";
+    cout << "Open Ports: " << open << " :  [ ";
     for (auto port : open_ports)
     {
         cout << port << " ";
     }
     cout << "]" << endl;
-    cout << "Closed Ports: " << closed_count << endl;
+    cout << "Closed Ports: " << closed << endl;
+    cout << "Total Port Scanned: " << open + closed << " : " << start_port << " - " << end_port << endl;
 
     return 0;
 }
