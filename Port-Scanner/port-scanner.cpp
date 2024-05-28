@@ -8,9 +8,11 @@
 #include <unistd.h> // for close
 using namespace std;
 
-bool is_port_open(const string& ip, int port) {
+bool is_port_open(const string &ip, int port)
+{
     int sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock < 0) {
+    if (sock < 0)
+    {
         cerr << "Socket creation failed" << endl;
         return false;
     }
@@ -21,14 +23,15 @@ bool is_port_open(const string& ip, int port) {
     server_addr.sin_addr.s_addr = inet_addr(ip.c_str());
     server_addr.sin_port = htons(port);
 
-    int result = connect(sock, (struct sockaddr*)&server_addr, sizeof(server_addr));
+    int result = connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr));
 
     close(sock);
 
     return result == 0;
 }
 
-int main() {
+int main()
+{
     string ip;
     int start_port, end_port;
 
@@ -41,18 +44,31 @@ int main() {
     cout << endl;
 
     int o = 0, c = 0;
-    for (int port = start_port; port <= end_port; ++port) {
-        if (is_port_open(ip, port)) {
+    vector<int> open;
+    vector<int> close;
+    for (int port = start_port; port <= end_port; ++port)
+    {
+        if (is_port_open(ip, port))
+        {
             o++;
+            open.push_back(port);
             cout << "Port " << port << " is open." << endl;
-        } else {
+        }
+        else
+        {
             c++;
+            close.push_back(port);
             cout << "Port " << port << " is closed." << endl;
         }
     }
     cout << endl;
-    cout << "Open Ports: " << o <<endl;
-    cout << "Close Ports: " << c <<endl;
+    cout << "Open Ports: " << o << " :  [ ";
+    for (auto i : open)
+    {
+        cout << i << " ";
+    }
+    cout << "]" << endl;
+    cout << "Close Ports: " << c << endl;
 
     return 0;
 }
