@@ -45,5 +45,10 @@ int main(int argc, char const *argv[])
         cout << *ptr << " : " << &ptr << endl;
     }
 
+    cout << "\nSwap:" << endl;
+    int b = 1, c = 3;
+    cout << b << " : " << c << endl;
+    swap(b, c);
+    cout << b << " : " << c << endl;
     return 0;
 }
