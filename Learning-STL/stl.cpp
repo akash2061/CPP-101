@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <list>
 #include <iterator>
+#include <ranges>
 using namespace std;
 
 int main(int argc, char const *argv[])
@@ -50,5 +52,35 @@ int main(int argc, char const *argv[])
     cout << b << " : " << c << endl;
     swap(b, c);
     cout << b << " : " << c << endl;
+
+    cout << "\nVector-Matrix:" << endl;
+    vector<vector<int>> Matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    for (const vector<int> &x : Matrix)
+    {
+        for (int y : x)
+        {
+            cout << y << " ";
+        }
+        cout << endl;
+    }
+
+    cout << "\nList:" << endl;
+    list<int> lst;
+    lst.push_back(10);
+    lst.push_front(5);
+    lst.push_back(15);
+    lst.push_front(0);
+
+    cout << "List elements:" << endl;
+    for (auto l : lst)
+    {
+        cout << l << endl;
+    }
+
+    cout << "List elements in reverse order:" << endl;
+    for (list<int>::reverse_iterator rit = lst.rbegin(); rit != lst.rend(); ++rit)
+    {
+        cout << *rit << endl;
+    }
     return 0;
 }
