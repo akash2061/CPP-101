@@ -22,5 +22,21 @@ int main()
         cout << "Roll number: " << it->first << ", Name: " << it->second << endl;
     }
 
+    // Erasing elements using iterators
+    cout << "\nRemoving 1002:" << endl;
+    students.erase(1002);
+    auto it = students.find(1003);
+    if (it != students.end())
+    {
+        // students.erase(it);
+        auto last = students.rbegin();
+        cout << "Last student: Roll number " << last->first << ", Name: " << last->second << endl;
+    }
+
+    // Printing remaining elements
+    for (const auto &pair : students)
+    {
+        std::cout << "Roll number: " << pair.first << ", Name: " << pair.second << std::endl;
+    }
     return 0;
 }
