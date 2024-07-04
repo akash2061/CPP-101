@@ -8,7 +8,8 @@ typedef struct LinkedList
     LinkedList *next;
 } node;
 
-node *temp, *head, *tail;
+node *head = nullptr, *tail = nullptr;
+int c = 0;
 
 int Dis()
 {
